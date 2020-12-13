@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Answers Sorting Form</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".subject").click(function() {
+                $(".question-grp").slideToggle(1000);
+                $(this).toggleClass("pointer-down");
+            });
+
+            $(".ref, .ref-pointer").click(function() {
+                $(".ref-type").slideToggle(1000);
+                $(".new-ref-panal").toggleClass("ref-pointer-down");
+            });
+
+            $("#ans-text").click(function() {
+                $(".done-btn").show();
+            });
+
+            $(".doc-ref").click(function() {
+                $(".references").show();
+                $(".ref-type").slideToggle(1000);
+            });
+
+            $(".remove-btn").click(function() {
+                $(".references").hide();
+            });
+
+            $(".remove-btn-new").click(function() {
+                $(".references-new").hide();
+            });
+
+            $(".references > .inputs > input").keyup(function() {
+                var empty = false;
+                $(".references > .inputs > input").each(function() {
+                    if ($(this).val() == '') {
+                        empty = true;
+                    }
+                });
+
+                if (empty) {
+                    $(".done-btn").attr('disabled', 'disabled');
+                    $(".done-btn").removeClass("enabled");
+                } else {
+                    $(".done-btn").removeAttr('disabled');
+                    $(".done-btn").addClass("enabled");
+                }
+            });
+
+            $(".done-btn").click(function() {
+                $(".done-btn").removeClass("enabled");
+                $(".done-btn").attr('disabled', 'disabled');
+                $(".references").hide();
+                $(".references-new").hide();
+                $(this).hide();
+                $(".done-btn").show();
+                $(".submit-btn").show();
+                $(".final-ref").show();
+            });
+
+            $(".new-ref-panal").click(function() {
+                $(".references-new").show();
+            });
+
+            $(".query, .inner-pointer").click(function() {
+                $(".answer").slideToggle(1000);
+                $(".question").toggleClass("inner-pointer-down");
+            });
+
+            $(".submit-btn").click(function() {
+                $(".answer").hide();
+                $(".query-circle").addClass("done");
+                $(".ans-count").show();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <h1>Answers Sorting Form</h1>
+    <fieldset class="ans-wrapper">
+        <legend><span class="main-legend" style="font-weight: bold;font-size: 20px;">Filter</span> <span class="sAll">Show All</span><span class="sNew">Show new Questions</span><span class="sOther">Show other
+                Questions</span></legend>
+
+        <div class="container">
+            <div class="subject">
+                <span class="subject-name">Biology</span>
+                <span class="pointer"></span>
+            </div>
+
+            <div class="question-grp">
+                <div class="question">
+                    <span class="query">
+                        <svg class="query-circle" style="margin-right: 10px;" width="10" height="10" viewBox="0 0 20 20" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="8.5" stroke="#A4A3A3" stroke-width="3" />
+                        </svg>What is Respiration?
+                    </span>
+                    <span class="ans-count">1 Answer</span>
+                    <span class="inner-pointer"></span>
+
+                    <div class="answer">
+                        <textarea name="" id="ans-text" cols="30" rows="10" placeholder="Type Answers"></textarea>
+
+                        <div class="final-ref">Author, A. A., Author, B. B., & Author, C. C. (year). Title of article. Title of Periodical, Volume number, pages. https://doi.org/xx.xxxxxxxx</div>
+
+                        <div class="add-ref">
+
+                            <span class="ref">Add Reference</span>
+                            <span class="ref-pointer"></span>
+
+
+                            <ul class="ref-type" style="font-size: 12px; color: black;">
+                                <li style="font-weight: bold;">Choose Source Type:</li>
+                                <li class="doc-ref"><a href="#">Document</a></li>
+                                <li><a href="#">Journal</a></li>
+                                <li><a href="#">Others</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="references">
+                            <p>Source Type: Document</p><span class="remove-btn" style="margin-left: 80%;position: absolute;margin-top: -25px;"><svg width="20"
+                                    height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="10" cy="10" r="10" fill="#FF0000" />
+                                    <rect x="4.60004" y="7.60001" width="10.8" height="5" fill="white" />
+                                </svg></span>
+                            <div class="inputs">
+                                <input type="text" placeholder="Author Name">
+                                <input type="text" placeholder="Year">
+                                <input type="text" placeholder="Title_of_Topic">
+                                <input type="text" placeholder="Site_name">
+                                <input type="text" placeholder="Website_https">
+                                <input type="text" placeholder="https_doi">
+                                <input type="text" placeholder="Title_of_Journal">
+                                <input type="text" placeholder="Volune_issue">
+                                <input type="text" placeholder="Pages">
+                                <span class="new-ref-panal" style="margin-left: 15px;position: absolute;margin-top: -7px;">+</span>
+                            </div>
+                        </div>
+
+                        <div class="references-new">
+                            <p>Source Type: Document</p><span class="remove-btn-new" style="margin-left: 80%;position: absolute;margin-top: -25px;"><svg width="20"
+                                    height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="10" cy="10" r="10" fill="#FF0000" />
+                                    <rect x="4.60004" y="7.60001" width="10.8" height="5" fill="white" />
+                                </svg></span>
+                            <div class="inputs">
+                                <input type="text" placeholder="Author Name">
+                                <input type="text" placeholder="Year">
+                                <input type="text" placeholder="Title_of_Topic">
+                                <input type="text" placeholder="Site_name">
+                                <input type="text" placeholder="Website_https">
+                                <input type="text" placeholder="https_doi">
+                                <input type="text" placeholder="Title_of_Journal">
+                                <input type="text" placeholder="Volune_issue">
+                                <input type="text" placeholder="Pages">
+                                <span style="margin-left: 15px;position: absolute;margin-top: -7px;">+</span>
+                            </div>
+                        </div>
+
+                        <div class="bttn">
+                            <button class="done-btn" id="db" disabled="disabled">Done</button>
+                            <button class="submit-btn" style>Submit</button>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="question">
+                    <span class="query">
+                        <svg style="margin-right: 10px;" width="10" height="10" viewBox="0 0 20 20" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="8.5" stroke="#A4A3A3" stroke-width="3" />
+                        </svg>What are white blood cells?
+                    </span>
+                    <span class="inner-pointer1">
+                    </span>
+                </div>
+                <div class="question">
+                    <span class="query">
+                        <svg style="margin-right: 10px;" width="10" height="10" viewBox="0 0 20 20" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="8.5" stroke="#A4A3A3" stroke-width="3" />
+                        </svg>How many neutrons are responsible for making decision?
+                    </span>
+                    <span class="inner-pointer1">
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="subject">
+                <span class="subject-name">Chemistry</span>
+                <span class="pointer"></span>
+            </div>
+        </div>
+        <div class="container">
+            <div class="subject">
+                <span class="subject-name">Math</span>
+                <span class="pointer"></span>
+            </div>
+        </div>
+        <div class="container">
+            <div class="subject">
+                <span class="subject-name">English</span>
+                <span class="pointer"></span>
+            </div>
+        </div>
+        <div class="container">
+            <div class="subject">
+                <span class="subject-name">Science</span>
+                <span class="pointer"></span>
+            </div>
+        </div>
+    </fieldset>
+
+</body>
+
+</html>
